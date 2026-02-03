@@ -2,19 +2,20 @@
   "name": "my-game-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "types": "module",
+  "main": "app.mjs",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node app.mjs",
+    "dev": "nodemon app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^5.2.1",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "vercel": "^50.9.6"
   }
 }
