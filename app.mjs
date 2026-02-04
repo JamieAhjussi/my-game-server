@@ -5,10 +5,26 @@ import connectionPool from "./utils/db.mjs";
 const app = e();
 
 app.use(c());
+app.use(e.json());
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
+
+app.get("/posts", async (req, res) => {
+    try {
+        const result = await connectionPool.query("SELECT * FROM posts");
+        return res.status(200).json({
+            data: result.rows
+        });
+    } catch (error) {
+        console.error("DEBUG: Database error full details:", error);
+        return res.status(500).json({
+            message: "Server error"
+        });
+    }
+});
+
 
 app.post("/posts", async (req, res) => {
 

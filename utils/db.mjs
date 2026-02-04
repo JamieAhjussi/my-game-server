@@ -1,9 +1,12 @@
 import dotenv from "dotenv";
 dotenv.config();
-import * as pg from "pg";
+import pkg from "pg";
+const { Pool } = pkg;
 
-const { connectionPool } = new Pool({
+const connectionPool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
-export default connectionPool
+console.log("Database URL (masked):", process.env.DATABASE_URL ? process.env.DATABASE_URL.replace(/:([^@]+)@/, ":****@") : "undefined");
+
+export default connectionPool;
