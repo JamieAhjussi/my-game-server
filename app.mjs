@@ -18,7 +18,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send("Hello World! Beautiful World!");
 });
 
 app.get("/posts", async (req, res) => {
