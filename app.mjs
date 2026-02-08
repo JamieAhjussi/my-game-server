@@ -69,7 +69,7 @@ app.get("/health", (req, res) => {
   res.status(200).json({ message: "OK" });
 });
 
-app.use("*", (req, res) => {
+app.use((req, res) => {
   console.log("Unknown route hit:", req.originalUrl);
   res.status(404).json({ message: "Route not found" });
 });
