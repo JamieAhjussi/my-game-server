@@ -76,10 +76,12 @@ app.use((req, res) => {
 
 
 
-const PORT = 4000;
-app.listen(PORT, () => {
+if (process.env.NODE_ENV !== "production") {
+  const PORT = 4000;
+  app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-});
+  });
+}
 
 export default app;
 
