@@ -53,13 +53,25 @@ app.post("/posts", async (req, res) => {
     });
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ message: "OK" });
+});
 
-
-
-export default app;
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // Frontend local (Vite)
+      "http://localhost:3000", // Frontend local (React แบบอื่น)
+      "https://vercel.com/james-pongwats-projects/my-game/G5B7P1aWyxqnHnS2RSfGhNCSKdtP", // Frontend ที่ Deploy แล้ว
+      // ✅ ให้เปลี่ยน https://your-frontend.vercel.app เป็น URL จริงของ Frontend ที่ deploy แล้ว
+    ],
+  })
+);
 
 const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+export default app;
 
