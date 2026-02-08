@@ -61,6 +61,8 @@ app.use(
   cors({
     origin: [
       "https://my-game-zeta-gules.vercel.app", // Frontend ที่ Deploy แล้ว
+      "http://localhost:5173", // Vite dev server (default port)
+      "http://localhost:3000", // Alternative dev port
     ],
   })
 );
