@@ -7,6 +7,16 @@ const app = e();
 // Redundant app.use(c()) removed as it is configured below with origin restrictions.
 app.use(e.json());
 
+app.use(
+  cors({
+    origin: [
+      "https://my-game-zeta-gules.vercel.app", // Frontend ที่ Deploy แล้ว
+      "http://localhost:5173", // Vite dev server (default port)
+      "http://localhost:3000", // Alternative dev port
+    ],
+  })
+);
+
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
@@ -57,15 +67,7 @@ app.get("/health", (req, res) => {
   res.status(200).json({ message: "OK" });
 });
 
-app.use(
-  cors({
-    origin: [
-      "https://my-game-zeta-gules.vercel.app", // Frontend ที่ Deploy แล้ว
-      "http://localhost:5173", // Vite dev server (default port)
-      "http://localhost:3000", // Alternative dev port
-    ],
-  })
-);
+
 
 const PORT = 4000;
 app.listen(PORT, () => {
