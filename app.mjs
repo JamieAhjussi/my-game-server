@@ -1,10 +1,10 @@
 import e from "express";
-import c from "cors";
+import cors from "cors";
 import connectionPool from "./utils/db.mjs";
 
 const app = e();
 
-app.use(c());
+// Redundant app.use(c()) removed as it is configured below with origin restrictions.
 app.use(e.json());
 
 app.get("/", (req, res) => {
@@ -60,10 +60,7 @@ app.get("/health", (req, res) => {
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // Frontend local (Vite)
-      "http://localhost:3000", // Frontend local (React แบบอื่น)
-      "https://vercel.com/james-pongwats-projects/my-game/G5B7P1aWyxqnHnS2RSfGhNCSKdtP", // Frontend ที่ Deploy แล้ว
-      // ✅ ให้เปลี่ยน https://your-frontend.vercel.app เป็น URL จริงของ Frontend ที่ deploy แล้ว
+      "https://my-game-zeta-gules.vercel.app", // Frontend ที่ Deploy แล้ว
     ],
   })
 );
