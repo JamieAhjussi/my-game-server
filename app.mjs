@@ -14,6 +14,7 @@ app.use(
       "http://localhost:5173", // Vite dev server (default port)
       "http://localhost:3000", // Alternative dev port
     ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   })
 );
 
