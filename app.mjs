@@ -17,6 +17,12 @@ app.use(
   })
 );
 
+app.get("/health", (req, res) => {
+  console.log("Health endpoint hit!");
+  console.log("Request headers:", req.headers);
+  res.status(200).json({ message: "OK" });
+});
+
 app.get("/", (req, res) => {
     res.send("Hello World! Beautiful World!");
 });
@@ -63,11 +69,7 @@ app.post("/posts", async (req, res) => {
     });
 });
 
-app.get("/health", (req, res) => {
-  console.log("Health endpoint hit!");
-  console.log("Request headers:", req.headers);
-  res.status(200).json({ message: "OK" });
-});
+
 
 app.use((req, res) => {
   console.log("Unknown route hit:", req.originalUrl);
