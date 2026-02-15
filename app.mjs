@@ -1,7 +1,8 @@
 import e from "express";
 import cors from "cors";
 import postRouter from "./router/postRouter.mjs";
-
+import protectUser from "./middlewares/protectUser.mjs";
+import protectAdmin from "./middlewares/protectAdmin.mjs";
 const app = e();
 
 // Redundant app.use(c()) removed as it is configured below with origin restrictions.
@@ -17,6 +18,15 @@ app.use(
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   })
 );
+
+
+app.get("/protected-route", protectUser, (req, res) => {
+  res.json({ message: "This is protected content", user: req.user });
+});
+
+app.get("/admin-only", protectAdmin, (req, res) => {
+  res.json({ message: "This is admin-only content", admin: req.user });
+});
 
 app.use("/posts", postRouter);
 
