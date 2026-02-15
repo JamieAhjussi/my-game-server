@@ -3,6 +3,7 @@ import cors from "cors";
 import postRouter from "./router/postRouter.mjs";
 import protectUser from "./middlewares/protectUser.mjs";
 import protectAdmin from "./middlewares/protectAdmin.mjs";
+import authRouter from "./router/auth.mjs";
 const app = e();
 
 // Redundant app.use(c()) removed as it is configured below with origin restrictions.
@@ -19,6 +20,7 @@ app.use(
   })
 );
 
+app.use("/auth", authRouter);
 
 app.get("/protected-route", protectUser, (req, res) => {
   res.json({ message: "This is protected content", user: req.user });
